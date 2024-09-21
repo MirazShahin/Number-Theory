@@ -1,7 +1,7 @@
 
 const ll N = (ll) 1e6 + 5;
 bitset<N >marked;
-vll  prime;
+vector<int> prime;
 
 void Sieve()
 {
