@@ -1,28 +1,23 @@
-
-const ll N = (ll) 1e6 + 5;
-bitset<N >marked;
-vector<int> prime;
-
-void Sieve()
-{
-    for(int i = 4; i <= N; i+=2) {
-        marked[i] = 1;
-    }
-    for(int i = 3; i * i <= N; i+= 2) {
-        if(!marked[i])
-        for(int j = i * i; j <= N; j += (i << 1)) {
-            marked[j] = 1;
+const int MX = 1e6; 
+vector<int> primes;
+bitset<MX + 5> mark; 
+ 
+void sieve() {
+    int limit = sqrt(MX);
+    for (int i = 3; i <= limit; i += 2) {
+        if (!mark[i] and (i * i) <= MX) {
+            for (int j = i * i; j <= MX; j += (i << 1)) {
+                mark[j] = 1;
+            }
         }
     }
-    prime.push_back(2);
-    for(int i = 3; i <= N; i+=2) {
-        if(!marked[i]) {
-            prime.push_back(i);
-        }
+    primes.push_back(2);
+    for (int i = 3; i <= MX; i += 2) {
+        if (!mark[i]) primes.push_back(i);
     }
 }
 
 bool isPrime(ll n) {
     if(n < 2) return false;
-    return !marked[n];
-}
+    return !mark[n];
+} 
